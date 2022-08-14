@@ -1,21 +1,20 @@
 package com.xworkz.medical.dao;
 
-import java.awt.image.AbstractMultiResolutionImage;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
+import static com.xworkz.medical.util.EMFUtil.*;
 
 import com.xworkz.medical.entity.MedicalEntity;
 
 public class MedicalDAOImpl implements MedicalDAO {
-	EntityManagerFactory factory = Persistence.createEntityManagerFactory("com.xworkz");
-	EntityManager manager = null;
+	EntityManagerFactory factory = getFactory();
 
 	@Override
 	public boolean save(MedicalEntity medicalEntity) {
+		EntityManager manager = null;
 		try {
 			manager = factory.createEntityManager();
 			EntityTransaction entityTransaction = manager.getTransaction();
@@ -34,6 +33,7 @@ public class MedicalDAOImpl implements MedicalDAO {
 
 	@Override
 	public MedicalEntity findById(Integer id) {
+		EntityManager manager = null;
 		try {
 			manager = factory.createEntityManager();
 			MedicalEntity entity = manager.find(MedicalEntity.class, id);
@@ -54,6 +54,7 @@ public class MedicalDAOImpl implements MedicalDAO {
 
 	@Override
 	public void updateownerAndTotalCostById(String newOwner, Double newTotalCost, Integer id) {
+		EntityManager manager = null;
 		try {
 			manager = factory.createEntityManager();
 			EntityTransaction entityTransaction = manager.getTransaction();
@@ -80,6 +81,7 @@ public class MedicalDAOImpl implements MedicalDAO {
 
 	@Override
 	public void deleteById(Integer id) {
+		EntityManager manager = null;
 		try {
 			manager=factory.createEntityManager();
 			EntityTransaction entityTransaction	=manager.getTransaction();

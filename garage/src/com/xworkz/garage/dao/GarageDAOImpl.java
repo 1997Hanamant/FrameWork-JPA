@@ -3,17 +3,16 @@ package com.xworkz.garage.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 
 import com.xworkz.garage.entity.GarageEntity;
-
+import static com.xworkz.garage.util.EMFUtil.*;
 public class GarageDAOImpl implements GarageDAO {
-	EntityManagerFactory factory = Persistence.createEntityManagerFactory("com.xworkz");
-	EntityManager manager = null;
+	EntityManagerFactory factory =getFactory();
 
 	@Override
 	public boolean save(GarageEntity garageEntity) {
+		EntityManager manager = null;
 		try {
 			manager = factory.createEntityManager();
 			EntityTransaction entityTransaction = manager.getTransaction();
@@ -32,6 +31,7 @@ public class GarageDAOImpl implements GarageDAO {
 
 	@Override
 	public GarageEntity findById(int id) {
+		EntityManager manager = null;
 		try {
 			manager = factory.createEntityManager();
 			GarageEntity entity = manager.find(GarageEntity.class, id);
@@ -54,6 +54,7 @@ public class GarageDAOImpl implements GarageDAO {
 
 	@Override
 	public void updateLocationById(String newLocation, int id) {
+		EntityManager manager = null;
 		try {
 			manager=factory.createEntityManager();
 			EntityTransaction entityTransaction	=manager.getTransaction();
@@ -75,6 +76,7 @@ public class GarageDAOImpl implements GarageDAO {
 
 	@Override
 	public void deleteById(int id) {
+		EntityManager manager = null;
 		try {
 			manager=factory.createEntityManager();
 			EntityTransaction entityTransaction	=manager.getTransaction();

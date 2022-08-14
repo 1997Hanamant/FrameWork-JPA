@@ -3,19 +3,19 @@ package com.xworkz.oyo.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 
 import com.xworkz.oyo.entity.OyoEntity;
+import static com.xworkz.oyo.util.EMFUtil.*;
 
 public class OyoDAOImpl implements OyoDAO {
-	EntityManagerFactory factory=Persistence.createEntityManagerFactory("com.xworkz");
-	private	EntityManager manager=null;
+	EntityManagerFactory factory=getFactory();
 
 	@Override
 	public boolean save(OyoEntity oyoEntity) {
+		EntityManager manager=null;
 		try {
-			this.manager=factory.createEntityManager();
+			manager=factory.createEntityManager();
 			EntityTransaction entityTransaction	= manager.getTransaction();
 			entityTransaction.begin();
 			manager.persist(oyoEntity);
@@ -33,8 +33,9 @@ public class OyoDAOImpl implements OyoDAO {
 
 	@Override
 	public OyoEntity findById(int id) {
+	EntityManager manager=null;
 		try {
-			this.manager=factory.createEntityManager();
+			manager=factory.createEntityManager();
 			OyoEntity entity=manager.find(OyoEntity.class,id);
 			if(entity!=null) {
 				System.out.println("Entity table is found:"+id);
@@ -56,8 +57,9 @@ public class OyoDAOImpl implements OyoDAO {
 
 	@Override
 	public void updatepricePerDayAndOwnerById(Double newPerpricePerDay, String newOwner, int id) {
+	EntityManager manager=null;
 		try {
-			this.manager=factory.createEntityManager();
+			manager=factory.createEntityManager();
 			EntityTransaction entityTransaction	=manager.getTransaction();
 			entityTransaction.begin();
 			OyoEntity entity=manager.find(OyoEntity.class, id);
@@ -83,8 +85,9 @@ public class OyoDAOImpl implements OyoDAO {
 
 	@Override
 	public void deleteById(int id) {
+	EntityManager manager=null;
 		try {
-			this.manager=factory.createEntityManager();
+			manager=factory.createEntityManager();
 			EntityTransaction entityTransaction	=manager.getTransaction();
 			entityTransaction.begin();
 			OyoEntity entity=manager.find(OyoEntity.class, id);

@@ -35,7 +35,7 @@ public class ClubRunner {
 		
 		System.out.println("*************************");
 		clubDAO.deleteById(2);
-		
+	
 		
 
 

@@ -7,13 +7,14 @@ import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
 
 import com.xworkz.cafe.entity.CafeEntity;
+import static com.xworkz.cafe.util.EMFUtil.*;
 
 public class CafeDAOImpl implements CafeDAO{
-	EntityManagerFactory factory=Persistence.createEntityManagerFactory("com.xworkz");
-	EntityManager manager=null;
+	EntityManagerFactory factory=getFactory();
 
 	@Override
 	public boolean save(CafeEntity cafeEntity) {
+		EntityManager manager=null;
 		try {
 			manager=factory.createEntityManager();
 			EntityTransaction entityTransaction=manager.getTransaction();
@@ -33,6 +34,7 @@ public class CafeDAOImpl implements CafeDAO{
 
 	@Override
 	public CafeEntity findById(int id) {
+		EntityManager manager=null;
 		try {
 			manager=factory.createEntityManager();
 			CafeEntity entity=manager.find(CafeEntity.class, id);
@@ -50,6 +52,7 @@ public class CafeDAOImpl implements CafeDAO{
 
 	@Override
 	public void updateNameById(String name, int id) {
+		EntityManager manager=null;
 		try {
 			manager=factory.createEntityManager();
 			EntityTransaction entityTransaction	=manager.getTransaction();
@@ -73,6 +76,7 @@ public class CafeDAOImpl implements CafeDAO{
 
 	@Override
 	public void deleteById(int id) {
+		EntityManager manager=null;
 		try {
 			manager=factory.createEntityManager();
 			EntityTransaction entityTransaction	=manager.getTransaction();

@@ -9,5 +9,12 @@ public interface ClubDAO {
 	ClubEntity findById(Integer id);
 	void updateCreatedByAndCreatedDateById(String newCreatedBy,LocalDate newCreatedDate,int id);
 	void deleteById(Integer id);
+	default ClubEntity findByName(String name) {
+		return null;
+	}
+	default ClubEntity findByNameAndLocation(String name,String location) {
+		return null;
+		
+	}
 
 }

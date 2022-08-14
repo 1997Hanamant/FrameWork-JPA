@@ -3,14 +3,13 @@ package com.xworkz.airport.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
-
 import com.xworkz.airport.entity.AirPortEntity;
+import static com.xworkz.airport.util.EMFUtil.*;
 
 public class AirPortDAOImpl implements AirPortDAO {
-	EntityManagerFactory factory=Persistence.createEntityManagerFactory("com.xworkz");
-	private EntityManager manager=null;
+	EntityManagerFactory factory=getFactory();
+	private	EntityManager manager=null;
 	@Override
 	public boolean save(AirPortEntity airPortEntity) {
 		try {

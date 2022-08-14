@@ -7,6 +7,8 @@ import java.time.LocalTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -14,6 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -21,26 +24,28 @@ import lombok.ToString;
 @ToString
 
 @Entity
-@Table(name="pub_info")
+@Table(name = "pub_info")
+@NamedQueries({ @NamedQuery(name = "findByName", query = "Select pub from PubEntity pub where pub.name=:nm"),
+@NamedQuery(name = "findByNameAndLocation", query = "Select pub from PubEntity pub where pub.name=:nm and pub.location=:loc") })
 public class PubEntity implements Serializable {
 	@Id
-	@Column(name="id")
+	@Column(name = "id")
 	private Integer id;
-	@Column(name="name")
+	@Column(name = "name")
 	private String name;
-	@Column(name="location")
+	@Column(name = "location")
 	private String location;
-	@Column(name="checkintime")
+	@Column(name = "checkintime")
 	private LocalTime checkInTime;
-	@Column(name="checkouttime")
+	@Column(name = "checkouttime")
 	private LocalTime checkOutTime;
-	@Column(name="createdby")
+	@Column(name = "createdby")
 	private String createBy;
-	@Column(name="createddate")
+	@Column(name = "createddate")
 	private LocalDate createDate;
-	@Column(name="updatedby")
+	@Column(name = "updatedby")
 	private String updatedBy;
-	@Column(name="updateddate")
+	@Column(name = "updateddate")
 	private LocalDate updatedDated;
 
 }
