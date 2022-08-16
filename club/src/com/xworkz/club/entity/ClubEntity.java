@@ -1,19 +1,15 @@
 package com.xworkz.club.entity;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,16 +17,14 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @ToString
-
 @Entity
 @Table(name = "club_info")
 @NamedQueries({ @NamedQuery(name = "findByName", query = "select club From ClubEntity club where club.name=:nm"),
-@NamedQuery(name = "findByNameAndLocation",query="select club From ClubEntity club where club.name=:nm and club.location=:loc") })
+		@NamedQuery(name = "findByNameAndLocation", query = "select club From ClubEntity club where club.name=:nm and club.location=:loc") })
 
-public class ClubEntity implements Serializable {
+public class ClubEntity extends ParentEntity {
 	@Id
 	@Column(name = "id")
 	private Integer id;
@@ -42,13 +36,15 @@ public class ClubEntity implements Serializable {
 	private LocalTime checkInTime;
 	@Column(name = "checkouttime")
 	private LocalTime checkOutTime;
-	@Column(name = "createby")
-	private String createdBy;
-	@Column(name = "createdate")
-	private LocalDate createdDate;
-	@Column(name = "updatedby")
-	private String updateBy;
-	@Column(name = "updateddate")
-	private LocalDate updatedDate;
+
+	public ClubEntity(Integer id, String name, String location, LocalTime checkInTime, LocalTime checkOutTime,
+			String createdBy, LocalDate createdDate, String updateBy, LocalDate updatedDate) {
+		super(createdBy,createdDate,updateBy,updatedDate);
+		this.id = id;
+		this.name = name;
+		this.location = location;
+		this.checkInTime = checkInTime;
+		this.checkOutTime = checkOutTime;
+	}
 
 }

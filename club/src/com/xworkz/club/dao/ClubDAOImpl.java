@@ -1,6 +1,7 @@
 package com.xworkz.club.dao;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -153,4 +154,27 @@ public class ClubDAOImpl implements ClubDAO {
 
 		return ClubDAO.super.findByNameAndLocation(name, location);
 	}
+
+	@Override
+	public boolean saveAll(List<ClubEntity> clubEntities) {
+		EntityManager manager=null;
+		try {
+			manager=factory.createEntityManager();
+			EntityTransaction entityTransaction	=manager.getTransaction();
+			entityTransaction.begin();
+			for(ClubEntity clubEntity:clubEntities) {
+				manager.persist(clubEntity);
+			}
+			entityTransaction.commit();
+
+		}catch (PersistenceException e) {
+			e.printStackTrace();
+		}
+		finally {
+			manager.close();
+
+		}
+		return ClubDAO.super.saveAll(clubEntities);
+	}
+
 }

@@ -9,6 +9,8 @@ import javax.persistence.Query;
 import com.xworkz.pub.entity.PubEntity;
 import static com.xworkz.pub.util.EMFUtil.*;
 
+import java.util.List;
+
 public class PubDAOImpl implements PubDAO {
 	EntityManagerFactory factory =getFactory();
 
@@ -155,5 +157,26 @@ public class PubDAOImpl implements PubDAO {
 
 		}
 		return PubDAO.super.findByNameAndLocation(name, location);
+	}
+	@Override
+	public boolean saveAll(List<PubEntity> pubEntities) {
+		EntityManager manager=null;
+		try {
+			manager=factory.createEntityManager();
+	EntityTransaction entityTransaction	=manager.getTransaction();
+	entityTransaction.begin();
+	for(PubEntity entity:pubEntities) {
+		manager.persist(entity);
+	}
+	entityTransaction.commit();
+		}
+		catch (PersistenceException e) {
+			e.printStackTrace();
+		}
+		finally {
+			manager.close();
+			
+		}
+		return PubDAO.super.saveAll(pubEntities);
 	}
 }

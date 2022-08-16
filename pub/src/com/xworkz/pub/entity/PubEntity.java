@@ -19,15 +19,25 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 
 @Entity
 @Table(name = "pub_info")
 @NamedQueries({ @NamedQuery(name = "findByName", query = "Select pub from PubEntity pub where pub.name=:nm"),
-@NamedQuery(name = "findByNameAndLocation", query = "Select pub from PubEntity pub where pub.name=:nm and pub.location=:loc") })
-public class PubEntity implements Serializable {
+		@NamedQuery(name = "findByNameAndLocation", query = "Select pub from PubEntity pub where pub.name=:nm and pub.location=:loc") })
+public class PubEntity extends ParentEntity {
+
+	public PubEntity(Integer id, String name, String location, LocalTime checkInTime, LocalTime checkOutTime,
+			String createBy, LocalDate createDate, String updatedBy, LocalDate updatedDated) {
+		super(createBy, createDate, updatedBy, updatedDated);
+		this.id = id;
+		this.name = name;
+		this.location = location;
+		this.checkInTime = checkInTime;
+		this.checkOutTime = checkOutTime;
+	}
+
 	@Id
 	@Column(name = "id")
 	private Integer id;
@@ -39,13 +49,5 @@ public class PubEntity implements Serializable {
 	private LocalTime checkInTime;
 	@Column(name = "checkouttime")
 	private LocalTime checkOutTime;
-	@Column(name = "createdby")
-	private String createBy;
-	@Column(name = "createddate")
-	private LocalDate createDate;
-	@Column(name = "updatedby")
-	private String updatedBy;
-	@Column(name = "updateddate")
-	private LocalDate updatedDated;
 
 }

@@ -1,6 +1,7 @@
 package com.xworkz.club.dao;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.xworkz.club.entity.ClubEntity;
 
@@ -15,6 +16,9 @@ public interface ClubDAO {
 	default ClubEntity findByNameAndLocation(String name,String location) {
 		return null;
 		
+	}
+	default boolean saveAll(List<ClubEntity> clubEntities) {
+		return false;
 	}
 
 }

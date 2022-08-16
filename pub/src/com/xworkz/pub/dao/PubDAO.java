@@ -1,5 +1,7 @@
 package com.xworkz.pub.dao;
 
+import java.util.List;
+
 import com.xworkz.pub.entity.PubEntity;
 
 public interface PubDAO {
@@ -14,6 +16,9 @@ public interface PubDAO {
 	default PubEntity findByNameAndLocation(String name,String location) {
 		return null;
 		
+	}
+	default boolean saveAll(List<PubEntity> pubEntities) {
+		return false;
 	}
 	
 }
