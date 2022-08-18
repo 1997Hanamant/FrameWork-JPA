@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import com.xworkz.cartoon.entity.CartoonEntity;
 import static com.xworkz.cartoon.util.EMFUtil.*;
@@ -60,6 +61,9 @@ public class CartoonEntityDAOImpl implements CartoonEntityDAO {
 		EntityManager manager = null;
 		try {
 			manager	=factory.createEntityManager();
+			Query query=manager.createNamedQuery("findByMaxCreatedDate");
+			Object object=query.getSingleResult();
+			System.out.println(object);
 
 		} catch (PersistenceException e) {
 			e.printStackTrace();
@@ -186,6 +190,7 @@ public class CartoonEntityDAOImpl implements CartoonEntityDAO {
 
 		return null;
 	}
+
 	@Override
 	public void updateAuthorByName(String author, String name) {
 		EntityManager manager = null;
@@ -194,12 +199,14 @@ public class CartoonEntityDAOImpl implements CartoonEntityDAO {
 			EntityTransaction entityTransaction	=manager.getTransaction();
 			entityTransaction.begin();
 			Query query	=manager.createNamedQuery("updateAuthorByName");
-			query.setParameter("qw", author);
+			query.setParameter("tr", author);
 			query.setParameter("as", name);
-			Object object	=query.getSingleResult();
-			if(object!=null) {
-				System.out.println(object);
-			}
+			query.executeUpdate();
+			System.out.println("The Updated Author Name is:"+ author);
+			//			Object object	=query.getSingleResult();
+			//			if(object!=null) {
+			//				System.out.println(object);
+			//			}
 			entityTransaction.commit();
 
 		} catch (PersistenceException e) {
@@ -218,13 +225,15 @@ public class CartoonEntityDAOImpl implements CartoonEntityDAO {
 			manager	=factory.createEntityManager();
 			EntityTransaction entityTransaction	=manager.getTransaction();
 			entityTransaction.begin();
-			Query query	=manager.createNamedQuery("updateAuthorByName");
-			query.setParameter("yp", type);
-			query.setParameter("rs", name);
-			Object object	=query.getSingleResult();
-			if(object!=null) {
-				System.out.println(object);
-			}
+			Query query	=manager.createNamedQuery("updateTypeByName");
+			query.setParameter("ty", type);
+			query.setParameter("ao", name);
+			query.executeUpdate();
+			System.out.println("updated type is :"+type);
+			//			Object object	=query.getSingleResult();
+			//			if(object!=null) {
+			//				System.out.println(object);
+			//			}
 			entityTransaction.commit();
 
 		} catch (PersistenceException e) {
@@ -244,10 +253,11 @@ public class CartoonEntityDAOImpl implements CartoonEntityDAO {
 			entityTransaction.begin();
 			Query query	=manager.createNamedQuery("deleteByName");
 			query.setParameter("hs", name);
-			Object object=query.getSingleResult();
-			if(object!=null) {
-				System.out.println(object);
-			}
+			query.executeUpdate();
+			System.out.println("deleted name is:"+name);
+			//			if(object!=null) {
+			//				System.out.println(object);
+			//			}
 			entityTransaction.commit();
 
 		} catch (PersistenceException e) {

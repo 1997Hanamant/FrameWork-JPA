@@ -38,9 +38,11 @@ import lombok.ToString;
 	// @NamedQuery(name="findCreatedDateByAuthor",query = "select
 	// cartoon.createdDate from CartoonEntity cartoon where cartoon.author=:ah"),
 	// @NamedQuery(name="total",query="select count(*) from CartoonEntity"),
-	//	@NamedQuery(name = "updateAuthorByName", query = "update  author CartoonEntity  set author=:qw where name=:as"),
-	//@NamedQuery(name="updateTypeByName",query = "update type CartoonEntity set type=:ty  where name=:rs"),
-	@NamedQuery(name="deleteByName",query = "delete from CartoonEntity c where c.name=:hs")
+
+	//@NamedQuery(name = "updateAuthorByName", query = "update CartoonEntity cartoon set cartoon.author=:tr where cartoon.name=:as"),
+	//@NamedQuery(name="updateTypeByName",query = "update  CartoonEntity cartoon set cartoon.type=:ty  where cartoon.name=:ao"),
+	//@NamedQuery(name="deleteByName",query = "delete from CartoonEntity cartoon where cartoon.name=:hs").
+	@NamedQuery(name="findByMaxCreatedDate",query ="select max(createdDate) from CartoonEntity")
 })
 
 public class CartoonEntity extends ParentCartoonEntity {

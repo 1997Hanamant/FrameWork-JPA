@@ -41,12 +41,13 @@ public class FreedomFighterDAOImpl implements FreedomFighterDAO {
 			entityTransaction.begin();
 			for (FreedomFighterEntity fighterEntity : entities) {
 				manager.persist(fighterEntity);
-				// System.out.println(fighterEntity)
+				manager.flush();
 			}
 			entityTransaction.commit();
 
 		} catch (PersistenceException e) {
 			e.printStackTrace();
+			manager.getTransaction().rollback();
 		} finally {
 			manager.close();
 		}

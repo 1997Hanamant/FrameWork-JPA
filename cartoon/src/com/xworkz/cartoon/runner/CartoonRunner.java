@@ -71,14 +71,18 @@ public class CartoonRunner {
 
 		//Object[]objects=cartoonEntityDAO.findNameAndCountryByAuthor("Nandna");
 		//System.out.println(objects[0]);
-	//	System.out.println(objects[1]);
+		//	System.out.println(objects[1]);
 
-	//	LocalDateTime time=cartoonEntityDAO.findCreatedDateByAuthor("Sharat");
-	//	System.out.println(time);
+		//	LocalDateTime time=cartoonEntityDAO.findCreatedDateByAuthor("Sharat");
+		//	System.out.println(time);
 
-	//	cartoonEntityDAO.updateAuthorByName("Charan", "Bugs Bunny");
-	//	cartoonEntityDAO.updateTypeByName("Dance", "Bugs Bunny");
-		cartoonEntityDAO.deleteByName("Garfield");
+		//cartoonEntityDAO.updateAuthorByName("Charan", "Bugs Bunny");
+		//	cartoonEntityDAO.updateTypeByName("Dance", "Bugs Bunny");
+		//cartoonEntityDAO.deleteByName("Garfield");
+		CartoonEntity enCartoonEntity=cartoonEntityDAO.findByMaxCreatedDate();
+		System.out.println(enCartoonEntity);
+
+
 
 
 
