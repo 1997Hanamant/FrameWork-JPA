@@ -35,13 +35,19 @@ public class FreedomFighterDAOImpl implements FreedomFighterDAO {
 	@Override
 	public boolean saveAll(List<FreedomFighterEntity> entities) {
 		EntityManager manager = null;
+		int count=0;
 		try {
 			manager = factory.createEntityManager();
 			EntityTransaction entityTransaction = manager.getTransaction();
 			entityTransaction.begin();
 			for (FreedomFighterEntity fighterEntity : entities) {
-				manager.persist(fighterEntity);
-				manager.flush();
+				manager.merge(fighterEntity);
+				count++;
+				if(count==20) {
+					manager.flush();
+					System.out.println("===================flushed");
+					count=0;
+				}
 			}
 			entityTransaction.commit();
 

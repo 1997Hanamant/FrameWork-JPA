@@ -1,7 +1,6 @@
 package com.xworkz.cartoon.runner;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,31 +56,42 @@ public class CartoonRunner {
 		//boolean save=cartoonEntityDAO.saveAll(list);
 		//	System.out.println(save);
 
-		//CartoonEntity entity=cartoonEntityDAO.findByName("Daffy Duck");
-		//System.out.println(entity);
+		//		CartoonEntity entity=cartoonEntityDAO.findByName("Daffy Duck");
+		//		System.out.println(entity);
+		//
+		//		Integer total=cartoonEntityDAO.total();
+		//		System.out.println(total);
+		//
+		//			CartoonEntity entity1=cartoonEntityDAO.findByNameAndCountryAndGenderAndAuthor("Garfield", "Nz", "female", "Nandna");
+		//		  System.out.println(entity1);
+		//
+		//		String name=cartoonEntityDAO.findAuthorByName("Betty Boop");
+		//		System.out.println(name);
+		//
+		//		Object[]objects=cartoonEntityDAO.findNameAndCountryByAuthor("Nandna");
+		//		System.out.println(objects[0]);
+		//			System.out.println(objects[1]);
+		//
+		//			LocalDateTime time=cartoonEntityDAO.findCreatedDateByAuthor("Sharat");
+		//			System.out.println(time);
+		//
+		//		cartoonEntityDAO.updateAuthorByName("Charan", "Bugs Bunny");
+		//			cartoonEntityDAO.updateTypeByName("Dance", "Bugs Bunny");
+		//		cartoonEntityDAO.deleteByName("Garfield");
+		//		CartoonEntity enCartoonEntity=cartoonEntityDAO.findByMaxCreatedDate();
+		//		System.out.println(enCartoonEntity);
+		//cartoonEntityDAO.findAll().forEach(System.out::println);
 
-		//Integer total=cartoonEntityDAO.total();
-		//System.out.println(total);
+		//cartoonEntityDAO.findAllByAuthor("Charan").forEach(System.out::println);
+		//cartoonEntityDAO.findAllByAuthorAndGender("Dharsan", "male").forEach(System.out::println);
+		//cartoonEntityDAO.findAllName().forEach(System.out:: println);
+		//cartoonEntityDAO.findAllCountry().forEach(System.out::println);
+		//	List<Object> objects	=cartoonEntityDAO.findAllNameAndCountry();
+		//System.out.println(objects.getClass().getName()+'@'+Integer.toHexString(0));
 
-		//	CartoonEntity entity1=cartoonEntityDAO.findByNameAndCountryAndGenderAndAuthor("Garfield", "Nz", "female", "Nandna");
-		//  System.out.println(entity1);
+		cartoonEntityDAO.findAllNameAndCountry().forEach(obj->System.out.println(obj[0]+"::"+obj[1]));
 
-		//String name=cartoonEntityDAO.findAuthorByName("Betty Boop");
-		//System.out.println(name);
-
-		//Object[]objects=cartoonEntityDAO.findNameAndCountryByAuthor("Nandna");
-		//System.out.println(objects[0]);
-		//	System.out.println(objects[1]);
-
-		//	LocalDateTime time=cartoonEntityDAO.findCreatedDateByAuthor("Sharat");
-		//	System.out.println(time);
-
-		//cartoonEntityDAO.updateAuthorByName("Charan", "Bugs Bunny");
-		//	cartoonEntityDAO.updateTypeByName("Dance", "Bugs Bunny");
-		//cartoonEntityDAO.deleteByName("Garfield");
-		CartoonEntity enCartoonEntity=cartoonEntityDAO.findByMaxCreatedDate();
-		System.out.println(enCartoonEntity);
-
+		cartoonEntityDAO.findAllNameAndCountryAndAuthor().forEach(obj->System.out.println(obj[0]+"::"+obj[1]+"::"+obj[2]));
 
 
 
