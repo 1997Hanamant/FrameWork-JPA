@@ -7,6 +7,8 @@ import java.util.List;
 import com.xworkz.cartoon.dao.CartoonEntityDAO;
 import com.xworkz.cartoon.dao.CartoonEntityDAOImpl;
 import com.xworkz.cartoon.entity.CartoonEntity;
+import com.xworkz.cartoon.service.CartoonService;
+import com.xworkz.cartoon.service.CartoonServiceImpl;
 
 public class CartoonRunner {
 
@@ -53,6 +55,12 @@ public class CartoonRunner {
 		list.add(cartoonEntity7);
 		list.add(cartoonEntity8);
 		list.add(cartoonEntity9);
+		CartoonService service=new CartoonServiceImpl();
+		//	boolean save=service.validateAndSaveAll(list);
+		//System.out.println(save);
+		CartoonEntity entity=service.findByName("Road Runner");
+		System.out.println(entity);
+
 		//boolean save=cartoonEntityDAO.saveAll(list);
 		//	System.out.println(save);
 
@@ -89,9 +97,9 @@ public class CartoonRunner {
 		//	List<Object> objects	=cartoonEntityDAO.findAllNameAndCountry();
 		//System.out.println(objects.getClass().getName()+'@'+Integer.toHexString(0));
 
-		cartoonEntityDAO.findAllNameAndCountry().forEach(obj->System.out.println(obj[0]+"::"+obj[1]));
+		//	cartoonEntityDAO.findAllNameAndCountry().forEach(obj->System.out.println(obj[0]+"::"+obj[1]));
 
-		cartoonEntityDAO.findAllNameAndCountryAndAuthor().forEach(obj->System.out.println(obj[0]+"::"+obj[1]+"::"+obj[2]));
+		//	cartoonEntityDAO.findAllNameAndCountryAndAuthor().forEach(obj->System.out.println(obj[0]+"::"+obj[1]+"::"+obj[2]));
 
 
 
