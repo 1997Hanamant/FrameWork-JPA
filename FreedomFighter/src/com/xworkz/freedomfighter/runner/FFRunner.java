@@ -23,7 +23,7 @@ public class FFRunner {
 		FreedomFighterEntity freedomFighterEntity2 = new FreedomFighterEntity("Jansi Rani laxmi", LocalDate.now(),
 				LocalDate.now(), "female", "ChitdruDruga", "Hanamant", LocalDate.now(), "Shivkumar", LocalDate.now());
 		List<FreedomFighterEntity> list = new ArrayList<FreedomFighterEntity>();
-		for (int i = 50; i > 0; i--) {
+		for (int i = 25000; i > 0; i--) {
 			list.add(freedomFighterEntity1);
 			list.add(freedomFighterEntity2);
 

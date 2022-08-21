@@ -45,9 +45,10 @@ public class FreedomFighterDAOImpl implements FreedomFighterDAO {
 				count++;
 				if(count==20) {
 					manager.flush();
-					System.out.println("===================flushed");
+					System.out.println("========================flushed");
 					count=0;
 				}
+				
 			}
 			entityTransaction.commit();
 
